@@ -19,3 +19,13 @@ A database observability tool that ingests slow query logs, parses SQL execution
 
 #### problem_statement/
 - `44_SE_Lab1_SE_Problem_Statements.pdf` – original problem statement
+
+## Lab-2: Agile Backlog Creation & Sprint Simulation in Jira
+
+### Contents
+
+#### submissions/
+- `Lab2_JIRA_PES1UG24CS536.pdf` – Contains Epics, User Stories with Fibonacci estimations, and Jira screenshots for Backlog, Sprint 1, Sprint 2 boards and Burndown charts.
+
+#### problem_statement/
+- `lab2_handout.pdf` – Lab instructions and requirements.
