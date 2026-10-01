@@ -1,5 +1,3 @@
-NAME: VISHAL PRASATH
-SRN: PES1UG24CS536
 
 # Real-Time Simple Platformer Game
 
