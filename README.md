@@ -29,3 +29,18 @@ A database observability tool that ingests slow query logs, parses SQL execution
 
 #### problem_statement/
 - `lab2_handout.pdf` – Lab instructions and requirements.
+
+## Lab-3: Architecture Pattern Selection & UML Component Diagram
+
+### Contents
+- `Lab3_Component_Diagram.pdf` – UML Component Diagram illustrating the Microservices architecture for Problem Statement #44 (Database Query Performance Profiler).
+- `Lab3_Architecture_Justification.pdf` / `Lab3_Architecture_Justification.docx` – Architectural justification document explaining the selection of Microservices pattern over Layered and Client-Server styles to satisfy high-volume log ingestion and independent scaling NFRs.
+
+## Lab-4: Pair Programming with LLMs – Real-Time Simple Platformer Game
+
+### Contents
+- `main.py` & `game/` – Pygame implementation with swept vertical collision detection, game over overlay screen, difficulty replay options (Easy/Medium/Hard), and procedural sound effects.
+- `before.mov` – Gameplay recording before bug fixes showcasing collision tunneling.
+- `after.mov` – Gameplay recording after fixes demonstrating all 4 tasks and new features.
+- `llm_chat_link/LLM_Chat_Link.md` – Link to complete Claude pair-programming conversation history.
+- `README.md` – Detailed instructions, setup, and task breakdown for the platformer game.
