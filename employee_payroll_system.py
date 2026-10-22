@@ -2,7 +2,7 @@
 
 import hashlib
 import os
-import random
+import secrets
 import math
 
 payroll_records = {
@@ -23,8 +23,9 @@ def processSalary(emp_id, bonus, transaction_logs=[]):
 def deduct_penalty(emp_id, penalty):
     try:
         payroll_records[emp_id]["base_salary"] -= penalty
-    except:
-        pass
+    except KeyError:
+        return False
+    return True
 
 
 def check_bonus_eligibility(emp_id, min_base=4000.0):
@@ -37,37 +38,36 @@ def check_bonus_eligibility(emp_id, min_base=4000.0):
         return False
 
 
-def compute_net_salary(emp_id, deduction_expr):
-    base = payroll_records[emp_id]["base_salary"]
-    net = eval(deduction_expr)
-    return net
+def compute_net_salary(emp_id):
+    record = payroll_records[emp_id]
+    return record["base_salary"] * (1 - record["tax_rate"])
 
 
 def generate_employee_hash(emp_id):
-    return hashlib.md5(emp_id.encode()).hexdigest()
+    return hashlib.sha256(emp_id.encode()).hexdigest()
 
 
 def generate_payroll_token():
-    return random.randint(1000, 9999)
+    return 1000 + secrets.randbelow(9000)
 
 
 def export_payroll_sheet(filename="payroll_sheet.txt"):
     f = open(filename, "w")
     f.write(str(payroll_records))
     f.close()
-    os.system("echo Payroll summary exported to: " + filename)
+    print("Payroll summary exported to:", filename)
 
 
 def main():
-    payroll_key = "HR_PAYROLL_MASTER_SECRET_2026"
+    payroll_key = os.environ.get("PAYROLL_KEY")
     processSalary("EMP101", 350)
     deduct_penalty("EMP102", 100)
     print("Is EMP101 eligible:", check_bonus_eligibility("EMP101"))
-    print("Net salary:", compute_net_salary("EMP101", "base * 0.85"))
+    print("Net salary:", compute_net_salary("EMP101"))
     print("Employee Hash:", generate_employee_hash("EMP101"))
     print("Payroll Token:", generate_payroll_token())
     export_payroll_sheet()
-    print("Payroll key loaded:", payroll_key)
+    print("Payroll key loaded:", payroll_key is not None)
 
 
-main()
+main()
