@@ -18,7 +18,8 @@ def process_salary(emp_id, bonus, transaction_logs=None):
     if emp_id not in payroll_records or bonus < 0:
         return False
     payroll_records[emp_id]["base_salary"] += bonus
-    transaction_logs.append(f"Credited bonus {bonus:.2f} to employee id {emp_id}")
+    transaction_logs.append(
+        f"Credited bonus {bonus:.2f} to employee id {emp_id}")
     return True
 
 
