@@ -44,3 +44,18 @@ A database observability tool that ingests slow query logs, parses SQL execution
 - `after.mov` – Gameplay recording after fixes demonstrating all 4 tasks and new features.
 - `llm_chat_link/LLM_Chat_Link.md` – Link to complete Claude pair-programming conversation history.
 - `README.md` – Detailed instructions, setup, and task breakdown for the platformer game.
+
+
+## Lab-5: Static Code Analysis with Pylint, Bandit & Flake8
+
+### Problem Statement
+**#44 – Employee Payroll System**
+
+An employee salary and payroll manager that logs bonuses, deducts penalties, checks eligibility thresholds, computes net salaries, and exports payroll summaries.
+
+### Contents
+- `employee_payroll_system.py` – Cleaned version of the script with all Bandit, Pylint, and Flake8 issues fixed.
+- `issues.md` – Table of identified issues (type, lines, description, fix approach), prioritised by severity.
+- `reports/before/` – Pylint, Bandit, and Flake8 reports on the original code.
+- `reports/after/` – Reports after fixes (Pylint 10.00/10, 0 Bandit issues, 0 Flake8 issues).
+- `README.md` – Original lab instructions for the assigned repo.
