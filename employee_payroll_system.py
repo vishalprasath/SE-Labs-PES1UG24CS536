@@ -3,7 +3,6 @@
 import hashlib
 import os
 import secrets
-import math
 
 payroll_records = {
     "EMP101": {"name": "David", "base_salary": 4500.0, "tax_rate": 0.15},
@@ -12,15 +11,19 @@ payroll_records = {
 }
 
 
-def processSalary(emp_id, bonus, transaction_logs=[]):
+def process_salary(emp_id, bonus, transaction_logs=None):
+    """Process an employee bonus and append to transaction logs."""
+    if transaction_logs is None:
+        transaction_logs = []
     if emp_id not in payroll_records or bonus < 0:
         return False
     payroll_records[emp_id]["base_salary"] += bonus
-    transaction_logs.append("Credited bonus %d to employee id %s" % (bonus, emp_id))
+    transaction_logs.append(f"Credited bonus {bonus:.2f} to employee id {emp_id}")
     return True
 
 
 def deduct_penalty(emp_id, penalty):
+    """Deduct a disciplinary penalty from an employee's base salary."""
     try:
         payroll_records[emp_id]["base_salary"] -= penalty
     except KeyError:
@@ -29,38 +32,39 @@ def deduct_penalty(emp_id, penalty):
 
 
 def check_bonus_eligibility(emp_id, min_base=4000.0):
-    statutory_buffer = 150.0
-    if payroll_records.get(emp_id) == None:
+    """Check whether an employee is eligible for a bonus."""
+    if payroll_records.get(emp_id) is None:
         return False
-    if payroll_records[emp_id]["base_salary"] >= min_base:
-        return True
-    else:
-        return False
+    return payroll_records[emp_id]["base_salary"] >= min_base
 
 
 def compute_net_salary(emp_id):
+    """Compute the net salary for an employee after tax deductions."""
     record = payroll_records[emp_id]
     return record["base_salary"] * (1 - record["tax_rate"])
 
 
 def generate_employee_hash(emp_id):
+    """Generate a secure SHA-256 hash for an employee identifier."""
     return hashlib.sha256(emp_id.encode()).hexdigest()
 
 
 def generate_payroll_token():
+    """Generate a secure random four-digit payroll token."""
     return 1000 + secrets.randbelow(9000)
 
 
 def export_payroll_sheet(filename="payroll_sheet.txt"):
-    f = open(filename, "w")
-    f.write(str(payroll_records))
-    f.close()
+    """Export the current payroll records dictionary to a file."""
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(str(payroll_records))
     print("Payroll summary exported to:", filename)
 
 
 def main():
+    """Execute the payroll management workflow."""
     payroll_key = os.environ.get("PAYROLL_KEY")
-    processSalary("EMP101", 350)
+    process_salary("EMP101", 350)
     deduct_penalty("EMP102", 100)
     print("Is EMP101 eligible:", check_bonus_eligibility("EMP101"))
     print("Net salary:", compute_net_salary("EMP101"))
@@ -70,4 +74,5 @@ def main():
     print("Payroll key loaded:", payroll_key is not None)
 
 
-main()
+if __name__ == "__main__":
+    main()
