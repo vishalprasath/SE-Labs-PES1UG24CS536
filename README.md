@@ -59,3 +59,29 @@ An employee salary and payroll manager that logs bonuses, deducts penalties, che
 - `reports/before/` – Pylint, Bandit, and Flake8 reports on the original code.
 - `reports/after/` – Reports after fixes (Pylint 10.00/10, 0 Bandit issues, 0 Flake8 issues).
 - `README.md` – Original lab instructions for the assigned repo.
+
+## Lab-6: Code Coverage and Branch Coverage Testing
+
+### Problem Statement
+**#44 – Scholarship Awards**
+
+A scholarship-awards utility that calculates award amounts by category and income, checks applicant eligibility, and determines application status.
+
+### Contents
+- `scholarship_awards.py` – Implementation of award calculation, eligibility, and application-status functions.
+- `CodeCoverageTest_44_scholarship_awards.py` – Pytest suite covering statement/line coverage for the scholarship-awards functions.
+- `BranchCoverageTest_44_scholarship_awards.py` – Pytest suite designed to exercise both outcomes of each branch.
+- `code_coverage_screenshot.jpg` – Screenshot of the code coverage test run and report.
+- `branch_coverage_screenshot.jpg` – Screenshot of the branch coverage test run and report.
+
+## Lab-7: Property-Based Testing with Hypothesis
+
+### Problem Statement
+**#44 – Scholarship Awards**
+
+Property-based testing of an applicant parser, marks-average calculator, and payable-award calculator for arbitrary valid and invalid inputs.
+
+### Contents
+- `scholarship_awards.py` – Applicant award utility with input parsing and safe invalid-input handling.
+- `test_scholarship_awards.py` – Hypothesis property tests for crash safety and output invariants, including structured valid-input tests.
+- `LAB7.pdf` – Lab 7 submission screenshots showing the buggy crash, failing tests, fixed output, and passing tests.
